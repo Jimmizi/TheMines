@@ -1,6 +1,11 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "LD49Character.h"
+
+#include <queue>
+
+#include "DrawDebugHelpers.h"
+#include "GameService.h"
 #include "LD49Projectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
@@ -11,6 +16,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "MotionControllerComponent.h"
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
+#include "Components/SphereComponent.h"
+#include "Interaction/InteractableActor.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -18,7 +25,23 @@ DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 // ALD49Character
 
 ALD49Character::ALD49Character()
+	: IInteractor(this)
 {
+	m_eInteractorType = InteractorType::InstigatorOnly;
+
+	InteractableArea = CreateDefaultSubobject<USphereComponent>(TEXT("TriggerArea"));
+	InteractableArea->SetupAttachment(RootComponent);
+	
+	InteractableArea->SetCollisionResponseToAllChannels(ECR_Ignore);
+
+	InteractableArea->SetCollisionObjectType(COLLISION_INTERACTION);
+	InteractableArea->SetCollisionResponseToChannel(COLLISION_INTERACTION, ECR_Overlap);
+	InteractableArea->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	
+	InteractableArea->OnComponentBeginOverlap.AddDynamic(this, &ALD49Character::OnOverlapBegin);
+	InteractableArea->OnComponentEndOverlap.AddDynamic(this, &ALD49Character::OnOverlapEnd);
+	
+	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -80,8 +103,33 @@ ALD49Character::ALD49Character()
 	VR_MuzzleLocation->SetRelativeLocation(FVector(0.000004, 53.999992, 10.000000));
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 
+	PrimaryActorTick.bCanEverTick = true;
+	
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
+}
+
+void ALD49Character::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	IInteractor* pOther = Cast<IInteractor>(OtherActor);
+	if(pOther && std::find(m_NearbyInteractors.begin(), m_NearbyInteractors.end(), pOther) == m_NearbyInteractors.end())
+	{
+		m_NearbyInteractors.push_back(pOther);
+	}
+}
+
+void ALD49Character::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if(IInteractor* pOther = Cast<IInteractor>(OtherActor))
+	{
+		const auto iter = std::find(m_NearbyInteractors.begin(), m_NearbyInteractors.end(), pOther);
+		if (iter != m_NearbyInteractors.end())
+		{
+			m_NearbyInteractors.erase(iter);
+		}
+	}
 }
 
 void ALD49Character::BeginPlay()
@@ -117,6 +165,8 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ALD49Character::TryStartInteraction);
+
 	// Bind fire event
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ALD49Character::OnFire);
 
@@ -136,6 +186,111 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAxis("TurnRate", this, &ALD49Character::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ALD49Character::LookUpAtRate);
+}
+
+int ALD49Character::GetIndexOfBestInteractor() const
+{
+	const float INNER_ANGLE_TRESHOLD_FOR_DIST = 0.5f;
+	
+	std::priority_queue<std::pair<float, int>> sortedScores;
+	std::priority_queue<std::pair<float, int>, std::vector<std::pair<float, int>>, std::greater<>> sortedDistances;
+
+	FCollisionQueryParams traceParams = FCollisionQueryParams(FName(TEXT("Interact_Trace")), false, this);
+ 
+	FVector vPlayerPosition = GetActorLocation();
+	
+	for (int i = 0; i < m_NearbyInteractors.size(); ++i)
+	{
+		const AInteractableActor* pInteractorActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]);
+		if (pInteractorActor)
+		{
+			FVector normForward = GetActorForwardVector();
+			normForward.Normalize(0);
+
+			FVector dir = pInteractorActor->GetActorLocation() - GetActorLocation();
+			dir.Normalize(0);
+
+			float dotProd = FVector::DotProduct(normForward, dir);
+
+			//Do not add interactors behind the character
+			if (dotProd < 0)
+			{
+				continue;
+			}
+
+			
+			//Re-initialize hit info
+			FHitResult hitResult(ForceInit);
+     
+			//call GetWorld() from within an actor extending class
+			if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
+			{
+				continue;
+			}
+			
+			//Add all distances within the threshold. Use this to determine an
+			//	overwhelming closeness to one of the interactors to prioritise that.
+			if(dotProd >= INNER_ANGLE_TRESHOLD_FOR_DIST)
+			{
+				sortedDistances.emplace(GetDistanceTo(pInteractorActor), i);
+			}
+			
+			sortedScores.emplace(dotProd, i);
+		}
+	}
+	
+	if (sortedDistances.size() > 1)
+	{
+		//TODO Perhaps think about using the score to further weight the best dot product result
+		
+		auto bestDistance = sortedDistances.top();
+		sortedDistances.pop();
+
+		//If the best distance is over a threshold of 30 units from the second best distance
+		//	then use the best distance instead of the best angled towards (as we're next to it)
+		if(sortedDistances.top().first - bestDistance.first > 30)
+		{
+			return bestDistance.second;
+		}
+		
+	}
+
+	return !sortedScores.empty() ? sortedScores.top().second : -1;
+}
+
+void ALD49Character::TryStartInteraction()
+{
+	if(m_NearbyInteractors.empty())
+	{
+		return;
+	}
+	else
+	{
+		const int bestIndex = GetIndexOfBestInteractor();
+		if(bestIndex > -1)
+		{
+			GameService::Interaction().CreateInteraction({ this, m_NearbyInteractors[bestIndex] });
+			//m_NearbyInteractors.erase(m_NearbyInteractors.begin() + bestIndex);
+		}
+	}
+}
+
+void ALD49Character::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if(!m_NearbyInteractors.empty())
+	{
+		const int iBestInteractor = GetIndexOfBestInteractor();
+		for(int i = 0; i < m_NearbyInteractors.size(); ++i)
+		{
+			if (const AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
+			{
+				DrawDebugLine(GetWorld(), GetActorLocation(), pActor->GetInteractionPosition(),
+					iBestInteractor == i ? pActor->IsInteracting() ? FColor::Yellow : FColor::Green : FColor::Red, false, -1, 0, 1);
+			}
+		}
+	}
 }
 
 void ALD49Character::OnFire()
