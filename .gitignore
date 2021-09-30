@@ -72,3 +72,16 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Additional IDEs: KDevelop 4, VSCode, QTCreator
+.kdev4/
+.vscode/
+*.code-workspace
+*.pro
+*.kdev4
+/*.pri
+/*.workspace
+
+CMakeLists.txt
+Makefile
+
