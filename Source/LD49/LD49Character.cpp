@@ -41,7 +41,6 @@ ALD49Character::ALD49Character()
 	InteractableArea->OnComponentBeginOverlap.AddDynamic(this, &ALD49Character::OnOverlapBegin);
 	InteractableArea->OnComponentEndOverlap.AddDynamic(this, &ALD49Character::OnOverlapEnd);
 	
-	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -106,9 +105,9 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ALD49Character::TryStartInteraction);
 
 	// Bind fire event
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ALD49Character::OnFire);
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ALD49Character::OnFire);
 	
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
+	//PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
 
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &ALD49Character::MoveForward);
@@ -153,14 +152,16 @@ int ALD49Character::GetIndexOfBestInteractor() const
 				continue;
 			}
 
-			
-			//Re-initialize hit info
-			FHitResult hitResult(ForceInit);
-     
-			//call GetWorld() from within an actor extending class
-			if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
+			if(!pInteractorActor->SkipLineOfSightCheck)
 			{
-				continue;
+				//Re-initialize hit info
+				FHitResult hitResult(ForceInit);
+     
+				//call GetWorld() from within an actor extending class
+				if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
+				{
+					continue;
+				}
 			}
 			
 			//Add all distances within the threshold. Use this to determine an
@@ -205,7 +206,6 @@ void ALD49Character::TryStartInteraction()
 		if(bestIndex > -1)
 		{
 			GameService::Interaction().CreateInteraction({ this, m_NearbyInteractors[bestIndex] });
-			//m_NearbyInteractors.erase(m_NearbyInteractors.begin() + bestIndex);
 		}
 	}
 }
@@ -258,22 +258,6 @@ void ALD49Character::OnFire()
 		}
 	}
 
-	// try and play the sound if specified
-	if (FireSound != nullptr)
-	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
-	}
-
-	// try and play a firing animation if specified
-	if (FireAnimation != nullptr)
-	{
-		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
-		if (AnimInstance != nullptr)
-		{
-			AnimInstance->Montage_Play(FireAnimation, 1.f);
-		}
-	}
 }
 
 void ALD49Character::OnResetVR()
