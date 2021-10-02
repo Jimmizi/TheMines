@@ -29,8 +29,6 @@ class LD49_API AInteractableActor : public AActor, public IInteractor
 	
 public:
 
-	
-	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	bool SkipLineOfSightCheck;
 	

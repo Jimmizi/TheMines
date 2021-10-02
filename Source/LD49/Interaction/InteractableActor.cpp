@@ -17,7 +17,7 @@ AInteractableActor::AInteractableActor()
 	SceneRoot->SetupAttachment(RootComponent);
 	
 	InteractableArea = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerArea"));
-	//InteractableArea->SetupAttachment(SceneRoot);
+	InteractableArea->SetupAttachment(SceneRoot);
 	
 	InteractableArea->SetCollisionResponseToAllChannels(ECR_Ignore);
 
@@ -27,29 +27,7 @@ AInteractableActor::AInteractableActor()
 	
 	InteractableArea->OnComponentBeginOverlap.AddDynamic(this, &AInteractableActor::OnOverlapBegin);
 	InteractableArea->OnComponentEndOverlap.AddDynamic(this, &AInteractableActor::OnOverlapEnd);
-	TArray<UActorComponent*> ParticleComponents = GetComponentsByClass(UBoxComponent::StaticClass());
-
-//void GetComponents(TSubclassOf<UActorComponent> ComponentClass, TArray<UActorComponent*, AllocatorType>& OutComponents, bool bIncludeFromChildActors = false) const
 	
-	TArray<UBoxComponent*> MyComponents;
-	GetComponents(MyComponents);
-	
-	for(UActorComponent* pComp : MyComponents)
-	{
-		if(UBoxComponent* pBox = dynamic_cast<UBoxComponent*>(pComp))
-		{
-			pBox->SetCollisionResponseToAllChannels(ECR_Ignore);
-
-			pBox->SetCollisionObjectType(COLLISION_INTERACTION);
-			pBox->SetCollisionResponseToChannel(COLLISION_INTERACTION, ECR_Overlap);
-			pBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-
-			if(pBox->GetName().Equals(NameOfBoxComponentToBeParent))
-			{
-				pBox->SetupAttachment(SceneRoot);
-			}
-		}
-	}
 }
 
 void AInteractableActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,

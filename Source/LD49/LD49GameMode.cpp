@@ -9,6 +9,7 @@
 
 ALD49GameMode::ALD49GameMode()
 	: Super()
+	, m_iLanternFuelRemaining(MAX_LANTERN_FUEL)
 {
 	GameService::ResetAll();
 	

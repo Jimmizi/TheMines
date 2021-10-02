@@ -219,8 +219,10 @@ void ALD49Character::Tick(float DeltaSeconds)
 		const int iBestInteractor = GetIndexOfBestInteractor();
 		for(int i = 0; i < m_NearbyInteractors.size(); ++i)
 		{
-			if (const AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
+			if (AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
 			{
+				pActor->UpdateNearbyInteractor();
+				
 				DrawDebugLine(GetWorld(), GetActorLocation(), pActor->GetInteractionPosition(),
 					iBestInteractor == i ? pActor->IsInteracting() ? FColor::Yellow : FColor::Green : FColor::Red, false, -1, 0, 1);
 			}
