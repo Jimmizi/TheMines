@@ -151,14 +151,16 @@ int ALD49Character::GetIndexOfBestInteractor() const
 				continue;
 			}
 
-			
-			//Re-initialize hit info
-			FHitResult hitResult(ForceInit);
-     
-			//call GetWorld() from within an actor extending class
-			if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
+			if(!pInteractorActor->SkipLineOfSightCheck)
 			{
-				continue;
+				//Re-initialize hit info
+				FHitResult hitResult(ForceInit);
+     
+				//call GetWorld() from within an actor extending class
+				if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
+				{
+					continue;
+				}
 			}
 			
 			//Add all distances within the threshold. Use this to determine an
@@ -217,8 +219,10 @@ void ALD49Character::Tick(float DeltaSeconds)
 		const int iBestInteractor = GetIndexOfBestInteractor();
 		for(int i = 0; i < m_NearbyInteractors.size(); ++i)
 		{
-			if (const AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
+			if (AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
 			{
+				pActor->UpdateNearbyInteractor();
+				
 				DrawDebugLine(GetWorld(), GetActorLocation(), pActor->GetInteractionPosition(),
 					iBestInteractor == i ? pActor->IsInteracting() ? FColor::Yellow : FColor::Green : FColor::Red, false, -1, 0, 1);
 			}

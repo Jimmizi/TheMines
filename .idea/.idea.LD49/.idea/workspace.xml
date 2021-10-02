@@ -9,8 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Config/DefaultInput.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/Interaction/BarrelInteractable.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/Interaction/BarrelInteractable.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49Character.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49GameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49GameMode.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +31,36 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/shared/intsafe.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../../../Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29910/include/vector" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LD49/Interactor.generated.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29910/include/vector" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1xXpGAx5v0wnGiszCZbK8AH8gv5" />
   <component name="ProjectLevelVcsManager">
@@ -383,6 +412,7 @@
       <workItem from="1632683201772" duration="85000" />
       <workItem from="1633163707252" duration="6186000" />
       <workItem from="1633189088813" duration="5646000" />
+      <workItem from="1633198782298" duration="525000" />
     </task>
     <task id="LOCAL-00001" summary="Interaction changes">
       <created>1631995927855</created>
@@ -400,6 +430,16 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
