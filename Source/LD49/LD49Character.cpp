@@ -41,6 +41,7 @@ ALD49Character::ALD49Character()
 	InteractableArea->OnComponentBeginOverlap.AddDynamic(this, &ALD49Character::OnOverlapBegin);
 	InteractableArea->OnComponentEndOverlap.AddDynamic(this, &ALD49Character::OnOverlapEnd);
 	
+	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -105,9 +106,7 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ALD49Character::TryStartInteraction);
 
 	// Bind fire event
-	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ALD49Character::OnFire);
-	
-	//PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
+	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
 
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &ALD49Character::MoveForward);
@@ -152,16 +151,14 @@ int ALD49Character::GetIndexOfBestInteractor() const
 				continue;
 			}
 
-			if(!pInteractorActor->SkipLineOfSightCheck)
-			{
-				//Re-initialize hit info
-				FHitResult hitResult(ForceInit);
+			
+			//Re-initialize hit info
+			FHitResult hitResult(ForceInit);
      
-				//call GetWorld() from within an actor extending class
-				if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
-				{
-					continue;
-				}
+			//call GetWorld() from within an actor extending class
+			if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
+			{
+				continue;
 			}
 			
 			//Add all distances within the threshold. Use this to determine an
@@ -206,6 +203,7 @@ void ALD49Character::TryStartInteraction()
 		if(bestIndex > -1)
 		{
 			GameService::Interaction().CreateInteraction({ this, m_NearbyInteractors[bestIndex] });
+			//m_NearbyInteractors.erase(m_NearbyInteractors.begin() + bestIndex);
 		}
 	}
 }
@@ -219,10 +217,8 @@ void ALD49Character::Tick(float DeltaSeconds)
 		const int iBestInteractor = GetIndexOfBestInteractor();
 		for(int i = 0; i < m_NearbyInteractors.size(); ++i)
 		{
-			if (AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
+			if (const AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
 			{
-				pActor->UpdateNearbyInteractor();
-				
 				DrawDebugLine(GetWorld(), GetActorLocation(), pActor->GetInteractionPosition(),
 					iBestInteractor == i ? pActor->IsInteracting() ? FColor::Yellow : FColor::Green : FColor::Red, false, -1, 0, 1);
 			}
@@ -238,7 +234,7 @@ void ALD49Character::OnFire()
 		UWorld* const World = GetWorld();
 		if (World != nullptr)
 		{
-			if (bUsingMotionControllers)
+			if (bUsingMotionControllers && VR_MuzzleLocation)
 			{
 				const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
 				const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
@@ -260,6 +256,22 @@ void ALD49Character::OnFire()
 		}
 	}
 
+	// try and play the sound if specified
+	if (FireSound != nullptr)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+	}
+
+	// try and play a firing animation if specified
+	if (FireAnimation != nullptr)
+	{
+		// Get the animation object for the arms mesh
+		UAnimInstance* AnimInstance = Mesh1P ? Mesh1P->GetAnimInstance() : nullptr;
+		if (AnimInstance != nullptr)
+		{
+			AnimInstance->Montage_Play(FireAnimation, 1.f);
+		}
+	}
 }
 
 void ALD49Character::OnResetVR()
@@ -272,10 +284,6 @@ void ALD49Character::BeginTouch(const ETouchIndex::Type FingerIndex, const FVect
 	if (TouchItem.bIsPressed == true)
 	{
 		return;
-	}
-	if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
-	{
-		OnFire();
 	}
 	TouchItem.bIsPressed = true;
 	TouchItem.FingerIndex = FingerIndex;
