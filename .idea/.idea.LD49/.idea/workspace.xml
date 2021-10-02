@@ -8,27 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="Fixed some merge issues">
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/ChaseLostStates.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/DebugSightSphereMat.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/DebugSightSphereMat_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/DebugUI.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/FloatToTargetPosition.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/IsAtTargetLocation.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/IsTargetPositionNull.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/NPCState.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/ResetTargetPosition.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimplePatrol.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game/Levels/Testbed.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/Levels/Testbed.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/BehaviourTreeTesting.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/BehaviourTreeTesting.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/FindPlayerLocation.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/FindPlayerLocation.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpc.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpc.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcBB.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcBB.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcBTree.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcController.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/Interaction/BarrelInteractable.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/Interaction/BarrelInteractable.uasset" afterDir="false" />
-    </list>
+    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="Fixed some merge issues" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -456,7 +436,7 @@
       <workItem from="1632683201772" duration="85000" />
       <workItem from="1633163707252" duration="6186000" />
       <workItem from="1633189088813" duration="5646000" />
-      <workItem from="1633198782298" duration="2777000" />
+      <workItem from="1633198782298" duration="3376000" />
     </task>
     <task id="LOCAL-00001" summary="Interaction changes">
       <created>1631995927855</created>
