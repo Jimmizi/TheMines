@@ -24,6 +24,8 @@ digraph Block
 #include "LD49/utils/fsm.h"
 #include "MineBlock.generated.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(MineBlockLog, Log, All);
+
 UCLASS()
 class LD49_API AMineBlock : public AInteractableActor
 {
@@ -51,7 +53,10 @@ private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
     bool m_supported{false};
     
-    void Tick(const float deltaTime) override;
+    void Tick(float deltaTime) override;
+    void BeginPlay() override;
+    
+    bool ShouldTickIfViewportsOnly() const override;
     
     void StartInteraction() override;
     void EndInteraction() override;
@@ -78,8 +83,9 @@ private:
         void ProcessFSM(const float deltaTime, AMineBlock& master);
         void StartInteraction();
         void EndInteraction();
-        
+        ~SolidState();
     private:
+        MineBlocker m_master;
         bool m_interacting{false};
         float m_timer{0.f};
     };
