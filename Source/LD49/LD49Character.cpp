@@ -18,6 +18,8 @@
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
 #include "Components/SphereComponent.h"
 #include "Interaction/InteractableActor.h"
+#include "LD49/Oxygen/PlayerOxygenComponent.h"
+
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -56,6 +58,8 @@ ALD49Character::ALD49Character()
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
 	PrimaryActorTick.bCanEverTick = true;
+
+	OxygenComponent = CreateDefaultSubobject<UPlayerOxygenComponent>(TEXT("OxygenComponent"));
 	
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
@@ -337,4 +341,10 @@ bool ALD49Character::EnableTouchscreenMovement(class UInputComponent* PlayerInpu
 	}
 	
 	return false;
+}
+
+void ALD49Character::TriggerDeath_Implementation(EDeathEffect deathEffect)
+{
+	bIsCharacterDead = true;
+	OnCharacterDied.Broadcast();
 }
