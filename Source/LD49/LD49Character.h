@@ -110,9 +110,6 @@ protected:
 	void TryStartInteraction();
 
 	void Tick(float DeltaSeconds) override;
-	
-	/** Fires a projectile. */
-	void OnFire();
 
 	/** Resets HMD orientation and position in VR. */
 	void OnResetVR();
