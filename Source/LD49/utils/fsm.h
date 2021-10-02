@@ -3,11 +3,12 @@
  * \author  Ruggero Riccobene
  * \date    01/10/2020
  * 
- * \brief   Static-time Finished State Machine
+ * \brief   Static-time Finished State Machine... sort of... I still have to finish work on some parts.
  */
 #pragma once
 #include <variant>
 #include <functional>
+#include "fsm_type_traits.h"
 
 template<typename... Classes>
 struct Executor
@@ -21,6 +22,12 @@ struct static_fsm_impl
 {
     template<typename... FirstCtorArgs>
     static_fsm_impl(FirstCtorArgs&&...);
+    
+    template<typename StateClass>
+    StateClass* GetCurrentState();
+    
+    template<typename StateClass>
+    const StateClass* GetCurrentState() const;
         
     template<typename StateClass, typename... CtorArgs>
     bool SetState(CtorArgs&&... args);
@@ -34,6 +41,7 @@ struct static_fsm_impl
     size_t GetStatusID() const;
 private:
     using fsm_t = std::variant<Classes...>;
+    using first_type_t = typename template_trait<fsm_t>::template param_t<0>;
     
     std::function<void(fsm_t&)> m_nextClassNoCtor;
     fsm_t m_fsm;

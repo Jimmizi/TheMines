@@ -106,8 +106,6 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ALD49Character::TryStartInteraction);
 
 	// Bind fire event
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ALD49Character::OnFire);
-	
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
 
 	// Bind movement events
@@ -236,7 +234,7 @@ void ALD49Character::OnFire()
 		UWorld* const World = GetWorld();
 		if (World != nullptr)
 		{
-			if (bUsingMotionControllers)
+			if (bUsingMotionControllers && VR_MuzzleLocation)
 			{
 				const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
 				const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
@@ -268,7 +266,7 @@ void ALD49Character::OnFire()
 	if (FireAnimation != nullptr)
 	{
 		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+		UAnimInstance* AnimInstance = Mesh1P ? Mesh1P->GetAnimInstance() : nullptr;
 		if (AnimInstance != nullptr)
 		{
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
@@ -286,10 +284,6 @@ void ALD49Character::BeginTouch(const ETouchIndex::Type FingerIndex, const FVect
 	if (TouchItem.bIsPressed == true)
 	{
 		return;
-	}
-	if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
-	{
-		OnFire();
 	}
 	TouchItem.bIsPressed = true;
 	TouchItem.FingerIndex = FingerIndex;

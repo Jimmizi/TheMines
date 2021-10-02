@@ -7,9 +7,23 @@
 template<typename Executor, typename... Classes>
 template<typename... FirstCtorArgs>
 static_fsm_impl<Executor, Classes...>::static_fsm_impl(FirstCtorArgs&&... args)
-    : m_fsm(std::forward<FirstCtorArgs>(args)...)
+    : m_fsm(std::in_place_type<static_fsm_impl<Executor, Classes...>::first_type_t>, std::forward<FirstCtorArgs>(args)...)
 {
     
+}
+
+template<typename Executor, typename... Classes>
+template<typename StateClass>
+StateClass* static_fsm_impl<Executor, Classes...>::GetCurrentState()
+{
+    return std::get_if<StateClass>(&m_fsm);
+}
+
+template<typename Executor, typename... Classes>
+template<typename StateClass>
+const StateClass* static_fsm_impl<Executor, Classes...>::GetCurrentState() const
+{
+    return std::get_if<StateClass>(&m_fsm);
 }
 
 template<typename Executor, typename... Classes>
