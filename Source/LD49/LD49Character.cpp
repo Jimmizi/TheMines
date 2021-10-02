@@ -107,10 +107,7 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 
 	// Bind fire event
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ALD49Character::OnFire);
-
-	// Enable touchscreen input
-	EnableTouchscreenMovement(PlayerInputComponent);
-
+	
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
 
 	// Bind movement events
