@@ -19,6 +19,11 @@ bool IInteractor::InteractionFinished() const
 	return m_bInteractionComplete;
 }
 
+void IInteractor::UpdateNearbyInteractor()
+{
+	Execute_OnInteractionNearbyUpdate(m_pSelf);
+}
+
 bool IInteractor::IsInteracting() const
 {
 	return m_bPerformingInteraction;

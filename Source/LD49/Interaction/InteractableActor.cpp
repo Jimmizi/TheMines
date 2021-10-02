@@ -27,6 +27,7 @@ AInteractableActor::AInteractableActor()
 	
 	InteractableArea->OnComponentBeginOverlap.AddDynamic(this, &AInteractableActor::OnOverlapBegin);
 	InteractableArea->OnComponentEndOverlap.AddDynamic(this, &AInteractableActor::OnOverlapEnd);
+	
 }
 
 void AInteractableActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -50,7 +51,6 @@ FVector AInteractableActor::GetInteractionPosition() const
 void AInteractableActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame

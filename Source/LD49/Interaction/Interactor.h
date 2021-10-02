@@ -51,6 +51,8 @@ public:
 	bool CanInteractWith() const;
 
 	bool InteractionFinished() const;
+
+	void UpdateNearbyInteractor();
 	
 	/// <summary>
 	/// Checks if the interactor is currently able to be interacted with.
@@ -69,6 +71,9 @@ public:
 protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
+	void OnInteractionNearbyUpdate();
+	
+	UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
 	void OnInteractionStart();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
@@ -86,6 +91,8 @@ protected:
 	/// The type of interactions I am able to process
 	/// </summary>
 	InteractorType m_eInteractorType;
+
+protected:
 
 private:
 

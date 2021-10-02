@@ -9,12 +9,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Game/Data/NotificationType.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Game/UI/PlayerUI.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/Interaction/BarrelInteractable.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/Interaction/OilBarrel.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPersonCPP/Blueprints/FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonCPP/Blueprints/FirstPersonCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Game/Levels/Testbed.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/Levels/Testbed.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/Interaction/InteractionTesting.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/Interaction/InteractionTesting.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/Interaction/TestButton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/Interaction/TestButton.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Game/MainGamemode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/MainGamemode.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Testing/Interaction/RockInteractable.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Testing/Interaction/RockInteractable.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/Interaction/InteractableActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractableActor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/Interaction/InteractableActor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractableActor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/Interaction/Interactor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/Interaction/Interactor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/Interaction/Interactor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/Interaction/Interactor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/LD49/LD49Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49Character.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49Character.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49GameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49GameMode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49GameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49GameMode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49HUD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49HUD.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +45,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/shared/intsafe.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29910/include/vector" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LD49/Interactor.generated.h" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -384,7 +397,8 @@
       <workItem from="1632225091383" duration="18000" />
       <workItem from="1632225212634" duration="598000" />
       <workItem from="1632683201772" duration="85000" />
-      <workItem from="1633163707252" duration="1439000" />
+      <workItem from="1633163707252" duration="6186000" />
+      <workItem from="1633189088813" duration="5019000" />
     </task>
     <task id="LOCAL-00001" summary="Interaction changes">
       <created>1631995927855</created>

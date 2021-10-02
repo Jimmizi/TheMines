@@ -8,6 +8,8 @@
 
 #include "InteractableActor.generated.h"
 
+class UStaticMeshComponent;
+
 UCLASS()
 class LD49_API AInteractableActor : public AActor, public IInteractor
 {
@@ -17,13 +19,20 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	float InteractionTraceOffset;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
+	FString NameOfBoxComponentToBeParent;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	class UBoxComponent* InteractableArea;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* SceneRoot;
 	
-public:	
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
+	bool SkipLineOfSightCheck;
+	
 	// Sets default values for this actor's properties
 	AInteractableActor();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
