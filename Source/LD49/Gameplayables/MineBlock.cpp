@@ -1,17 +1,19 @@
 #include "MineBlock.h"
 #include "Components/SceneComponent.h"
 
+DEFINE_LOG_CATEGORY(MineBlockLog);
+
 namespace MineBlockInternal
 {
     void SetVisible(USceneComponent* component, const bool value)
     {
         if (component)
         {
-            component->SetVisibility(value, true);
+            component->SetHiddenInGame(!value, true);
         }
     }
     
-    //TODO: move them to a blueprintable configuration, but not in these blocks.
+    //TODO: move them to a blueprintable configuration, but not in AMineBlock.
     constexpr float DigTime{3.f};
     constexpr float UnsupportTime{2.f};
 }
@@ -33,18 +35,32 @@ AMineBlock::AMineBlock()
         CollapsedProp->SetupAttachment(SceneRoot);
     }
     
+    SetActorTickEnabled(true);
     PrimaryActorTick.bCanEverTick = true;
 }
 
-void AMineBlock::Tick(const float deltaTime)
+void AMineBlock::Tick(float deltaTime)
 {
     Super::Tick(deltaTime);
     m_fsm.Process(deltaTime, *this);
 }
 
+void AMineBlock::BeginPlay()
+{
+    Super::BeginPlay();
+    MineBlocker masterbuild(*this);
+    m_fsm.SetState<SolidState>(masterbuild);
+}
+
+bool AMineBlock::ShouldTickIfViewportsOnly() const
+{
+    return true;
+}
+
 void AMineBlock::StartInteraction()
 {
     AInteractableActor::StartInteraction();
+    
 
     auto CallStart = [](auto* type)
     {
@@ -66,12 +82,17 @@ void AMineBlock::StartInteraction()
             CallStart(m_fsm.GetCurrentState<SolidState>());
             break;
         }
+        default:
+        {
+            UE_LOG(MineBlockLog, Log, TEXT("Entering unkown state (%d)"), m_fsm.GetStatusID());
+        }
     }
 }
 
 void AMineBlock::EndInteraction()
 {
-    AInteractableActor::StartInteraction();
+    AInteractableActor::EndInteraction();
+    
 
     auto CallEnd = [](auto* type)
     {
@@ -93,6 +114,7 @@ void AMineBlock::EndInteraction()
             CallEnd(m_fsm.GetCurrentState<SolidState>());
             break;
         }
+        default: UE_LOG(MineBlockLog, Log, TEXT("Ending Unknown interaction."));
     }
 }
 
@@ -101,13 +123,24 @@ void AMineBlock::EndInteraction()
 // \\=====================//
 
 AMineBlock::SolidState::SolidState(MineBlocker masterclass)
+    : m_master(masterclass)
+    , m_timer(MineBlockInternal::DigTime)
 {
     AMineBlock& master = masterclass;
+    master.m_currentStatus = State::Solid;
+    
     MineBlockInternal::SetVisible(master.SolidProp, true);
     MineBlockInternal::SetVisible(master.SupportedProp, false);
     MineBlockInternal::SetVisible(master.UnsupportedProp, false);
     MineBlockInternal::SetVisible(master.CollapsedProp, false);
 }
+
+AMineBlock::SolidState::~SolidState()
+{
+    AMineBlock& master = m_master;
+    master.AInteractableActor::EndInteraction();
+}
+
 
 void AMineBlock::SolidState::ProcessFSM(const float deltaTime, AMineBlock& master)
 {
@@ -143,8 +176,10 @@ void AMineBlock::SolidState::EndInteraction()
 // \\===========================//
 
 AMineBlock::UnsupportedState::UnsupportedState(MineBlocker masterclass)
+    : m_timer(MineBlockInternal::UnsupportTime)
 {
     AMineBlock& master = masterclass;
+    master.m_currentStatus = State::Unsupported;
     MineBlockInternal::SetVisible(master.SolidProp, false);
     MineBlockInternal::SetVisible(master.SupportedProp, false);
     MineBlockInternal::SetVisible(master.UnsupportedProp, true);
@@ -180,6 +215,7 @@ void AMineBlock::UnsupportedState::ProcessFSM(const float deltaTime, AMineBlock&
 AMineBlock::SupportedState::SupportedState(MineBlocker masterclass)
 {
     AMineBlock& master = masterclass;
+    master.m_currentStatus = State::Supported;
     MineBlockInternal::SetVisible(master.SolidProp, false);
     MineBlockInternal::SetVisible(master.SupportedProp, true);
     MineBlockInternal::SetVisible(master.UnsupportedProp, false);
@@ -205,6 +241,7 @@ void AMineBlock::SupportedState::ProcessFSM(const float deltaTime, AMineBlock& m
 
 AMineBlock::CollapsedState::CollapsedState(AMineBlock& master)
 {
+    master.m_currentStatus = State::Collapsed;
     MineBlockInternal::SetVisible(master.SolidProp, false);
     MineBlockInternal::SetVisible(master.SupportedProp, false);
     MineBlockInternal::SetVisible(master.UnsupportedProp, false);
