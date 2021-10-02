@@ -4,35 +4,75 @@
     <projectFile>Intermediate/ProjectFiles/LD49.vcxproj</projectFile>
     <projectFile>Intermediate/ProjectFiles/UE4.vcxproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Testing/ButtonMat.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/InteractionTesting.umap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/Manager_Interaction.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Testing/TestButton.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LD49.sln.DotSettings.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/GameService.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/GameService.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractableActor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractableActor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractionInstance.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractionInstance.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractionManager.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/InteractionManager.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/Interactor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/LD49/Interaction/Interactor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Game/Levels/MainMenu.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Game/MainGamemode.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPersonIdle.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPersonJump_End.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPersonJump_Loop.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPersonJump_Start.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPersonRun.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPersonWalk.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPerson_AnimBP.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPerson_IdleRun_2D.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Animations/ThirdPerson_Jump.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MI_Female_Body.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/M_Male_Body.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/M_UE4Man_ChestLogo.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/ML_GlossyBlack_Latex_UE4.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/ML_Plastic_Shiny_Beige.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/ML_Plastic_Shiny_Beige_LOGO.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/ML_SoftMetal_UE4.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/T_ML_Aluminum01.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/T_ML_Aluminum01_N.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_N.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Mesh/SK_Mannequin.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Mesh/SK_Mannequin_Female.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Mesh/SK_Mannequin_Female_PhysicsAsset.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Mesh/UE4_Mannequin_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Textures/T_Female_Mask.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Textures/T_Female_N.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Textures/T_Male_Mask.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Textures/T_Male_N.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Textures/T_UE4Logo_Mask.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Mannequin/Character/Textures/T_UE4Logo_N.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/BehaviourTreeTesting.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/FindPlayerLocation.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/FindRandomLocation.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpc.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcBB.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcBTree.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcController.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/Interaction/ButtonMat.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/Interaction/InteractionTesting.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/Interaction/Manager_Interaction.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Testing/Interaction/TestButton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPerson/Meshes/Bump_StaticMesh.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPerson/Meshes/LeftArm_StaticMesh.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPerson/Meshes/Linear_Stair_StaticMesh.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPerson/Meshes/RampMaterial.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPerson/Meshes/Ramp_StaticMesh.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPerson/Meshes/RightArm_StaticMesh.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPersonCPP/Blueprints/ThirdPersonCharacter.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/ThirdPersonCPP/Maps/ThirdPersonExampleMap.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/LD49/TP_ThirdPerson/TP_ThirdPerson.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/LD49/TP_ThirdPerson/TP_ThirdPersonCharacter.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/LD49/TP_ThirdPerson/TP_ThirdPersonCharacter.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/LD49/TP_ThirdPerson/TP_ThirdPersonGameMode.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/LD49/TP_ThirdPerson/TP_ThirdPersonGameMode.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultInput.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPersonCPP/Blueprints/FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonCPP/Blueprints/FirstPersonCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonCPP/Maps/FirstPersonExampleMap.umap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LD49.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/LD49.uproject" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49Character.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49Character.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LD49/LD49GameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LD49/LD49GameMode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Testing/ButtonMat.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Testing/InteractionTesting.umap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Testing/Manager_Interaction.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Testing/TestButton.uasset" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +110,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="XThreadsFramesViewSplitterKey" value="0.40264422" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="C++ Project.LD49">
@@ -398,8 +438,19 @@
       <workItem from="1630511200265" duration="864000" />
       <workItem from="1631979033528" duration="630000" />
       <workItem from="1631980094093" duration="1575000" />
-      <workItem from="1631981730569" duration="10641000" />
+      <workItem from="1631981730569" duration="10907000" />
+      <workItem from="1632225091383" duration="18000" />
+      <workItem from="1632225212634" duration="598000" />
+      <workItem from="1632683201772" duration="85000" />
     </task>
+    <task id="LOCAL-00001" summary="Interaction changes">
+      <created>1631995927855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1631995927855</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,6 +474,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Interaction changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interaction changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -439,5 +492,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
