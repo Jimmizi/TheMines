@@ -67,6 +67,11 @@ public:
 	virtual void StartInteraction();
 	virtual void UpdateInteraction();
 	virtual void EndInteraction();
+    
+    /*!
+     * Terminate the interaction properly (calling Execute_SetInteractionDone).
+     */
+    void TerminateInteraction();
 
 protected:
 

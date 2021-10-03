@@ -131,6 +131,7 @@ private:
 protected:
 
 	void TryStartInteraction();
+    void StopAllInteractions();
 
 	void Tick(float DeltaSeconds) override;
 

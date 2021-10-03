@@ -108,6 +108,7 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ALD49Character::TryStartInteraction);
+	PlayerInputComponent->BindAction("Interact", IE_Released, this, &ALD49Character::StopAllInteractions);
 
 	// Bind fire event
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
@@ -163,7 +164,10 @@ int ALD49Character::GetIndexOfBestInteractor() const
 				//call GetWorld() from within an actor extending class
 				if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
 				{
-					continue;
+                    if (hitResult.Actor.Get() != pInteractorActor)
+                    {
+                        continue;
+                    }
 				}
 			}
 			
@@ -212,6 +216,17 @@ void ALD49Character::TryStartInteraction()
 			//m_NearbyInteractors.erase(m_NearbyInteractors.begin() + bestIndex);
 		}
 	}
+}
+
+void ALD49Character::StopAllInteractions()
+{
+    for(IInteractor* interactor : m_NearbyInteractors)
+    {
+        if (interactor)
+        {
+            GameService::Interaction().StopInteraction({*this, *interactor});
+        }
+    }
 }
 
 void ALD49Character::Tick(float DeltaSeconds)
