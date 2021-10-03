@@ -58,6 +58,9 @@ private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
     float DiggingTime{3.f};
     
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
+    float SupportedTime{2.f};
+    
     uint32_t m_supported{0};
 
     void Tick(float deltaTime) override;
