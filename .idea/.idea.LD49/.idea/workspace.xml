@@ -8,7 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="Fixed some merge issues" />
+    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,64 +27,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/shared/intsafe.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LD49/Interactor.generated.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29910/include/vector" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49Character.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/jaket/Documents/Repos/LD49_new/Source/LD49/LD49GameMode.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LD49/Interactor.generated.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1xXpGAx5v0wnGiszCZbK8AH8gv5" />
   <component name="ProjectLevelVcsManager">
@@ -436,7 +380,8 @@
       <workItem from="1632683201772" duration="85000" />
       <workItem from="1633163707252" duration="6186000" />
       <workItem from="1633189088813" duration="5646000" />
-      <workItem from="1633198782298" duration="3376000" />
+      <workItem from="1633198782298" duration="3468000" />
+      <workItem from="1633256197850" duration="2229000" />
     </task>
     <task id="LOCAL-00001" summary="Interaction changes">
       <created>1631995927855</created>
@@ -493,11 +438,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Source/LD49/Interaction/InteractionInstance.cpp</url>
-          <line>42</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Source/LD49/Interaction/InteractionManager.cpp</url>
           <line>34</line>
