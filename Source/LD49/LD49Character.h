@@ -70,7 +70,7 @@ class ALD49Character : public ACharacter, public IInteractor
 	UPlayerOxygenComponent* OxygenComponent;
 
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCharacterDiedDelegate);
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintAssignable, meta = (AllowPrivateAccess = "true"))
 	FCharacterDiedDelegate OnCharacterDied;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
