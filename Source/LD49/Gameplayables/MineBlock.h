@@ -34,6 +34,10 @@ class LD49_API AMineBlock : public AInteractableActor
 public:
     AMineBlock();
     
+    UFUNCTION(BlueprintCallable)
+    void AddSupport();
+    UFUNCTION(BlueprintCallable)
+    void RemoveSupport();
 private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
     USceneComponent* SolidProp;
@@ -50,8 +54,8 @@ private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
     float DiggingTime{3.f};
     
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
-    bool m_supported{false};
+    
+    uint32_t m_supported{0};
     
     void Tick(float deltaTime) override;
     void BeginPlay() override;
@@ -116,11 +120,13 @@ private:
     struct CollapsedState final
     {
         CollapsedState(AMineBlock& master);
+        ~CollapsedState();
         void ProcessFSM(const float deltaTime, AMineBlock& master);
         void StartInteraction();
         void EndInteraction();
         
     private:
+        MineBlocker m_master;
         bool m_interacting{false};
         float m_timer{2.f};
     };
