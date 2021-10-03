@@ -44,7 +44,8 @@ void AInteractableActor::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActo
 
 FVector AInteractableActor::GetInteractionPosition() const
 {
-	return GetActorLocation() + (GetActorForwardVector() * InteractionTraceOffset);
+    FVector retval = GetActorTransform().TransformPositionNoScale(InteractOffset);
+	return retval;
 }
 
 // Called when the game starts or when spawned
@@ -64,3 +65,12 @@ void AInteractableActor::Tick(float DeltaTime)
 #endif
 }
 
+bool AInteractableActor::CanBeInteracted() const
+{
+    return m_canBeInteracted;
+}
+
+void AInteractableActor::SetInteractable(const bool value)
+{
+    m_canBeInteracted = value;
+}

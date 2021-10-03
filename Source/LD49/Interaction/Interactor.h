@@ -89,7 +89,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
 	void SetInteractionDone();
-
+    
 	virtual void SetInteractionDone_Implementation();
 
 	/// <summary>
@@ -102,8 +102,8 @@ protected:
     
 private:
 
-	bool m_bPerformingInteraction;
-	bool m_bInteractionComplete;
+	bool m_bPerformingInteraction{false};
+	bool m_bInteractionComplete{false};
 
-	UObject* m_pSelf;
+	UObject* m_pSelf{nullptr};
 };

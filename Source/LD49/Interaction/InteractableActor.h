@@ -17,9 +17,6 @@ class LD49_API AInteractableActor : public AActor, public IInteractor
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
-	float InteractionTraceOffset;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	FString NameOfBoxComponentToBeParent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
@@ -29,9 +26,18 @@ protected:
 	class USceneComponent* SceneRoot;
 	
 public:
+    UFUNCTION(BlueprintCallable)
+    bool CanBeInteracted() const;
+    
+    // Interfaces cannot have variables my ass...
+    UFUNCTION(BlueprintCallable)
+    void SetInteractable(const bool value);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	bool SkipLineOfSightCheck;
+    
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
+    FVector InteractOffset;
 	
 	// Sets default values for this actor's properties
 	AInteractableActor();
@@ -52,10 +58,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-protected:
 	bool m_bHasOpened;
 };
