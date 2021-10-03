@@ -51,3 +51,8 @@ void IInteractor::SetInteractionDone_Implementation()
 {
 	m_bInteractionComplete = true;
 }
+
+void IInteractor::TerminateInteraction()
+{
+    Execute_SetInteractionDone(m_pSelf);
+}

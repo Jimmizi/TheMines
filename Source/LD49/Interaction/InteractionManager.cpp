@@ -23,17 +23,50 @@ bool AInteractionManager::CreateInteraction(std::initializer_list<IInteractor*> 
 		}
 	}
 	
-	m_CurrentInteractions.push_back(MakeUnique<InteractionInstance>());
-	InteractionInstance* pInstance = m_CurrentInteractions[m_CurrentInteractions.size()-1].Get();
+    InteractionInstance& created = m_currentInteractions.emplace_back();
 
 	for(IInteractor* pInteractor : pInteractors)
 	{
-		pInstance->AddInteractor(pInteractor);
+		created.AddInteractor(pInteractor);
 	}
 
-	pInstance->Initialise();
+	created.Initialise();
 	return true;
 }
+
+void AInteractionManager::StopInteraction(std::initializer_list<InteractorElement> interactors)
+{
+    for (InteractionInstance& iter : m_currentInteractions)
+    {
+        bool match = iter.GetInteractors().empty() == false;
+        for(IInteractor* instance : iter.GetInteractors())
+        {
+            // The logic is inverted here on purpose.
+            // Believe it makes sense but I have no time to explain.
+            bool found = false;
+            for(IInteractor& other : interactors)
+            {
+                if (&other == instance)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (found == false)
+            {
+                match = false;
+                break;
+            }
+        }
+        
+        if (match)
+        {
+            iter.End();
+        }
+    }
+}
+
 
 // Called when the game starts or when spawned
 void AInteractionManager::BeginPlay()
@@ -48,12 +81,11 @@ void AInteractionManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	for(int i = m_CurrentInteractions.size()-1; i >= 0; --i)
+	for(int i = m_currentInteractions.size()-1; i >= 0; --i)
 	{
-		if(m_CurrentInteractions[i]->Update())
+		if(m_currentInteractions[i].Update())
 		{
-			m_CurrentInteractions[i].Reset();
-			m_CurrentInteractions.erase(m_CurrentInteractions.begin() + i);
+			m_currentInteractions.erase(m_currentInteractions.begin() + i);
 		}
 	}
 }
