@@ -16,6 +16,15 @@ class UCameraComponent;
 class UMotionControllerComponent;
 class UAnimMontage;
 class USoundBase;
+class UPlayerOxygenComponent;
+
+UENUM(BlueprintType)
+enum class EDeathEffect : uint8
+{
+	Suffocate,
+	Crushed,
+	GhostKilled
+};
 
 UCLASS(config=Game)
 class ALD49Character : public ACharacter, public IInteractor
@@ -57,23 +66,36 @@ class ALD49Character : public ACharacter, public IInteractor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UMotionControllerComponent* L_MotionController;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPlayerOxygenComponent* OxygenComponent;
+
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCharacterDiedDelegate);
+	UPROPERTY(EditAnywhere, BlueprintAssignable, meta = (AllowPrivateAccess = "true"))
+	FCharacterDiedDelegate OnCharacterDied;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	bool bIsCharacterDead = false;
+
 public:
 	ALD49Character();
+
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+    void TriggerDeath(EDeathEffect deathEffect);
+    virtual void TriggerDeath_Implementation(EDeathEffect deathEffect);
+
+	bool IsCharacterDead() const { return bIsCharacterDead; }
 
 protected:
 
 	/** called when something enters the sphere component */
 	UFUNCTION()
-	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	
+	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);	
 
 	/** called when something leaves the sphere component */
 	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);	
 	
 	virtual void BeginPlay();
-
 public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
@@ -111,9 +133,6 @@ protected:
 	void TryStartInteraction();
 
 	void Tick(float DeltaSeconds) override;
-	
-	/** Fires a projectile. */
-	void OnFire();
 
 	/** Resets HMD orientation and position in VR. */
 	void OnResetVR();

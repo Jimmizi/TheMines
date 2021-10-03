@@ -11,12 +11,17 @@ IInteractor::IInteractor(UObject* derived)
 
 bool IInteractor::CanInteractWith() const
 {
-	return m_eInteractorType == InteractorType::InteractableOnly || m_eInteractorType == InteractorType::Both;
+	return m_canBeInteracted && (m_eInteractorType == InteractorType::InteractableOnly || m_eInteractorType == InteractorType::Both);
 }
 
 bool IInteractor::InteractionFinished() const
 {
 	return m_bInteractionComplete;
+}
+
+void IInteractor::UpdateNearbyInteractor()
+{
+	Execute_OnInteractionNearbyUpdate(m_pSelf);
 }
 
 bool IInteractor::IsInteracting() const

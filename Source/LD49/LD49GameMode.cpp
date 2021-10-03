@@ -9,12 +9,13 @@
 
 ALD49GameMode::ALD49GameMode()
 	: Super()
+	, m_iLanternFuelRemaining(MAX_LANTERN_FUEL)
 {
 	GameService::ResetAll();
 	
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/FirstPersonCharacter"));
-	DefaultPawnClass = PlayerPawnClassFinder.Class;
+	//static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/FirstPersonCharacter"));
+	//DefaultPawnClass = PlayerPawnClassFinder.Class;
 
 	// use our custom HUD class
 	HUDClass = ALD49HUD::StaticClass();

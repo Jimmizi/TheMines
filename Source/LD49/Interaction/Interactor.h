@@ -48,9 +48,11 @@ public:
 	/// Checks if the interactor has the ability to be interacted with.
 	/// </summary>
 	/// <returns>True if able to be interacted with</returns>
-	inline bool CanInteractWith() const;
+	bool CanInteractWith() const;
 
-	inline bool InteractionFinished() const;
+	bool InteractionFinished() const;
+
+	void UpdateNearbyInteractor();
 	
 	/// <summary>
 	/// Checks if the interactor is currently able to be interacted with.
@@ -62,12 +64,15 @@ public:
 	/// <returns>True if the interactor is free to be interacted with</returns>
 	bool IsInteracting() const;
 
-	void StartInteraction();
-	void UpdateInteraction();
-	void EndInteraction();
+	virtual void StartInteraction();
+	virtual void UpdateInteraction();
+	virtual void EndInteraction();
 
 protected:
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
+	void OnInteractionNearbyUpdate();
+	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
 	void OnInteractionStart();
 
@@ -87,6 +92,9 @@ protected:
 	/// </summary>
 	InteractorType m_eInteractorType;
 
+protected:
+    bool m_canBeInteracted{true};
+    
 private:
 
 	bool m_bPerformingInteraction;

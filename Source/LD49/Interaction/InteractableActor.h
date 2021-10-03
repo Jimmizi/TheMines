@@ -15,6 +15,7 @@ class LD49_API AInteractableActor : public AActor, public IInteractor
 {
 	GENERATED_BODY()
 
+protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	float InteractionTraceOffset;
 
@@ -29,8 +30,6 @@ class LD49_API AInteractableActor : public AActor, public IInteractor
 	
 public:
 
-	
-	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	bool SkipLineOfSightCheck;
 	

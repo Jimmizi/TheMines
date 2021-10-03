@@ -18,6 +18,8 @@
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
 #include "Components/SphereComponent.h"
 #include "Interaction/InteractableActor.h"
+#include "LD49/Oxygen/PlayerOxygenComponent.h"
+
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -41,6 +43,7 @@ ALD49Character::ALD49Character()
 	InteractableArea->OnComponentBeginOverlap.AddDynamic(this, &ALD49Character::OnOverlapBegin);
 	InteractableArea->OnComponentEndOverlap.AddDynamic(this, &ALD49Character::OnOverlapEnd);
 	
+	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -55,6 +58,8 @@ ALD49Character::ALD49Character()
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
 	PrimaryActorTick.bCanEverTick = true;
+
+	OxygenComponent = CreateDefaultSubobject<UPlayerOxygenComponent>(TEXT("OxygenComponent"));
 	
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
@@ -105,9 +110,7 @@ void ALD49Character::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ALD49Character::TryStartInteraction);
 
 	// Bind fire event
-	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ALD49Character::OnFire);
-	
-	//PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
+	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ALD49Character::OnResetVR);
 
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &ALD49Character::MoveForward);
@@ -206,6 +209,7 @@ void ALD49Character::TryStartInteraction()
 		if(bestIndex > -1)
 		{
 			GameService::Interaction().CreateInteraction({ this, m_NearbyInteractors[bestIndex] });
+			//m_NearbyInteractors.erase(m_NearbyInteractors.begin() + bestIndex);
 		}
 	}
 }
@@ -219,45 +223,15 @@ void ALD49Character::Tick(float DeltaSeconds)
 		const int iBestInteractor = GetIndexOfBestInteractor();
 		for(int i = 0; i < m_NearbyInteractors.size(); ++i)
 		{
-			if (const AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
+			if (AInteractableActor* pActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]))
 			{
+				pActor->UpdateNearbyInteractor();
+				
 				DrawDebugLine(GetWorld(), GetActorLocation(), pActor->GetInteractionPosition(),
 					iBestInteractor == i ? pActor->IsInteracting() ? FColor::Yellow : FColor::Green : FColor::Red, false, -1, 0, 1);
 			}
 		}
 	}
-}
-
-void ALD49Character::OnFire()
-{
-	// try and fire a projectile
-	if (ProjectileClass != nullptr)
-	{
-		UWorld* const World = GetWorld();
-		if (World != nullptr)
-		{
-			if (bUsingMotionControllers)
-			{
-				const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
-				const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
-				World->SpawnActor<ALD49Projectile>(ProjectileClass, SpawnLocation, SpawnRotation);
-			}
-			else
-			{
-				const FRotator SpawnRotation = GetControlRotation();
-				// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-				const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
-
-				//Set Spawn Collision Handling Override
-				FActorSpawnParameters ActorSpawnParams;
-				ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
-
-				// spawn the projectile at the muzzle
-				World->SpawnActor<ALD49Projectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-			}
-		}
-	}
-
 }
 
 void ALD49Character::OnResetVR()
@@ -270,10 +244,6 @@ void ALD49Character::BeginTouch(const ETouchIndex::Type FingerIndex, const FVect
 	if (TouchItem.bIsPressed == true)
 	{
 		return;
-	}
-	if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
-	{
-		OnFire();
 	}
 	TouchItem.bIsPressed = true;
 	TouchItem.FingerIndex = FingerIndex;
@@ -371,4 +341,10 @@ bool ALD49Character::EnableTouchscreenMovement(class UInputComponent* PlayerInpu
 	}
 	
 	return false;
+}
+
+void ALD49Character::TriggerDeath_Implementation(EDeathEffect deathEffect)
+{
+	bIsCharacterDead = true;
+	OnCharacterDied.Broadcast();
 }
