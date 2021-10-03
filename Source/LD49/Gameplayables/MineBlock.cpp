@@ -1,15 +1,39 @@
 #include "MineBlock.h"
 #include "Components/SceneComponent.h"
+#include "Components/PrimitiveComponent.h"
 
 DEFINE_LOG_CATEGORY(MineBlockLog);
 
 namespace MineBlockInternal
 {
-    void SetVisible(USceneComponent* component, const bool value)
+    enum class CollisionHandling { None, Disable, Enable};
+    void SetVisible(USceneComponent* component, const bool value, const CollisionHandling collision)
     {
         if (component)
         {
             component->SetHiddenInGame(!value, true);
+            
+            if (collision != CollisionHandling::None)
+            {
+                const bool enable = collision == CollisionHandling::Enable;
+                
+                auto& children = component->GetAttachChildren();
+                
+                for(USceneComponent* child : children)
+                {
+                    UPrimitiveComponent* primitive = Cast<UPrimitiveComponent>(child);
+                    
+                    if (primitive == nullptr)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        const ECollisionEnabled::Type collisionType = enable ? ECollisionEnabled::QueryAndPhysics : ECollisionEnabled::NoCollision;
+                        primitive->SetCollisionEnabled(collisionType);
+                    }
+                }
+            }
         }
     }
     
@@ -52,6 +76,21 @@ void AMineBlock::BeginPlay()
     m_fsm.SetState<SolidState>(masterbuild);
 }
 
+void AMineBlock::AddSupport()
+{
+    ++m_supported;
+}
+
+void AMineBlock::RemoveSupport()
+{
+    if (m_supported > 0)
+    {
+        --m_supported;
+    }
+}
+
+
+
 bool AMineBlock::ShouldTickIfViewportsOnly() const
 {
     return true;
@@ -93,6 +132,12 @@ void AMineBlock::EndInteraction()
 {
     AInteractableActor::EndInteraction();
     
+    // This because due to the FSM the destructors of SolidState and CollapsedState will interrupt the interaction and will call EndInteraction again
+    // It's harmless because the object is not destroyed yet but I'll prevent to be safe.
+    if (m_canBeInteracted == false)
+    {
+        return;
+    }
 
     auto CallEnd = [](auto* type)
     {
@@ -128,17 +173,18 @@ AMineBlock::SolidState::SolidState(MineBlocker masterclass)
 {
     AMineBlock& master = masterclass;
     master.m_currentStatus = State::Solid;
-    
-    MineBlockInternal::SetVisible(master.SolidProp, true);
-    MineBlockInternal::SetVisible(master.SupportedProp, false);
-    MineBlockInternal::SetVisible(master.UnsupportedProp, false);
-    MineBlockInternal::SetVisible(master.CollapsedProp, false);
+    master.m_canBeInteracted = true;
+    MineBlockInternal::SetVisible(master.SolidProp, true, MineBlockInternal::CollisionHandling::Enable);
+    MineBlockInternal::SetVisible(master.SupportedProp, false, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.UnsupportedProp, false, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.CollapsedProp, false, MineBlockInternal::CollisionHandling::Disable);
 }
 
 AMineBlock::SolidState::~SolidState()
 {
     AMineBlock& master = m_master;
-    master.AInteractableActor::EndInteraction();
+    master.m_canBeInteracted = false;
+    master.Execute_SetInteractionDone(&master);
 }
 
 
@@ -179,16 +225,17 @@ AMineBlock::UnsupportedState::UnsupportedState(MineBlocker masterclass)
     : m_timer(MineBlockInternal::UnsupportTime)
 {
     AMineBlock& master = masterclass;
+    master.m_canBeInteracted = false;
     master.m_currentStatus = State::Unsupported;
-    MineBlockInternal::SetVisible(master.SolidProp, false);
-    MineBlockInternal::SetVisible(master.SupportedProp, false);
-    MineBlockInternal::SetVisible(master.UnsupportedProp, true);
-    MineBlockInternal::SetVisible(master.CollapsedProp, false);
+    MineBlockInternal::SetVisible(master.SolidProp, false, MineBlockInternal::CollisionHandling::Disable);
+    MineBlockInternal::SetVisible(master.SupportedProp, false, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.UnsupportedProp, true, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.CollapsedProp, false, MineBlockInternal::CollisionHandling::Disable);
 }
 
 void AMineBlock::UnsupportedState::ProcessFSM(const float deltaTime, AMineBlock& master)
 {
-    if (master.m_supported)
+    if (master.m_supported > 0)
     {
         m_timer = MineBlockInternal::UnsupportTime;
     }
@@ -216,15 +263,16 @@ AMineBlock::SupportedState::SupportedState(MineBlocker masterclass)
 {
     AMineBlock& master = masterclass;
     master.m_currentStatus = State::Supported;
-    MineBlockInternal::SetVisible(master.SolidProp, false);
-    MineBlockInternal::SetVisible(master.SupportedProp, true);
-    MineBlockInternal::SetVisible(master.UnsupportedProp, false);
-    MineBlockInternal::SetVisible(master.CollapsedProp, false);
+    master.m_canBeInteracted = true;
+    MineBlockInternal::SetVisible(master.SolidProp, false, MineBlockInternal::CollisionHandling::Disable);
+    MineBlockInternal::SetVisible(master.SupportedProp, true, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.UnsupportedProp, false, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.CollapsedProp, false, MineBlockInternal::CollisionHandling::Disable);
 }
 
 void AMineBlock::SupportedState::ProcessFSM(const float deltaTime, AMineBlock& master)
 {
-    if (master.m_supported == false)
+    if (master.m_supported == 0)
     {
         MineBlocker mastermind(master);
         master.m_fsm.Continue<UnsupportedState>(mastermind);
@@ -240,13 +288,23 @@ void AMineBlock::SupportedState::ProcessFSM(const float deltaTime, AMineBlock& m
 // \\=========================//
 
 AMineBlock::CollapsedState::CollapsedState(AMineBlock& master)
+    : m_master(master)
 {
     master.m_currentStatus = State::Collapsed;
-    MineBlockInternal::SetVisible(master.SolidProp, false);
-    MineBlockInternal::SetVisible(master.SupportedProp, false);
-    MineBlockInternal::SetVisible(master.UnsupportedProp, false);
-    MineBlockInternal::SetVisible(master.CollapsedProp, true);
+    master.m_canBeInteracted = true;
+    MineBlockInternal::SetVisible(master.SolidProp, false, MineBlockInternal::CollisionHandling::Disable);
+    MineBlockInternal::SetVisible(master.SupportedProp, false, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.UnsupportedProp, false, MineBlockInternal::CollisionHandling::None);
+    MineBlockInternal::SetVisible(master.CollapsedProp, true, MineBlockInternal::CollisionHandling::Enable);
 }
+
+AMineBlock::CollapsedState::~CollapsedState()
+{
+    AMineBlock& master = m_master;
+    master.m_canBeInteracted = false;
+    master.Execute_SetInteractionDone(&master);
+}
+
 
 void AMineBlock::CollapsedState::ProcessFSM(const float deltaTime, AMineBlock& master)
 {
