@@ -197,6 +197,7 @@ void AMineBlock::SolidState::ProcessFSM(const float deltaTime, AMineBlock& maste
         {
             MineBlocker masterclass(master);
             master.m_fsm.Continue<UnsupportedState>(masterclass);
+            master.OnDug();
         }
     }
 }
@@ -315,6 +316,7 @@ void AMineBlock::CollapsedState::ProcessFSM(const float deltaTime, AMineBlock& m
         {
             MineBlocker masterclass(master);
             master.m_fsm.Continue<UnsupportedState>(masterclass);
+            master.OnDug();
         }
     }
 }

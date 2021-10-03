@@ -8,27 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/AI_TestLevel.umap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/ChaseLostStates.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/DebugSightSphereMat.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/DebugSightSphereMat_Inst.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/DebugUI.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/NPCState.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/SimpleNpc.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Game/AI/SimpleNpcController.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game/Audio/GhostWantsYou_Cue.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/Audio/GhostWantsYou_Cue.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game/UI/02.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/UI/02.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game/UI/Font/coldnightforalligators.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/UI/Font/coldnightforalligators.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/BehaviourTreeTesting.umap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/ChaseLostStates.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/DebugSightSphereMat.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/DebugSightSphereMat_Inst.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/DebugUI.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/NPCState.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpc.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Testing/BehaviourTree/SimpleNpcController.uasset" beforeDir="false" />
-    </list>
+    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -401,7 +381,7 @@
       <workItem from="1633163707252" duration="6186000" />
       <workItem from="1633189088813" duration="5646000" />
       <workItem from="1633198782298" duration="3468000" />
-      <workItem from="1633256197850" duration="2971000" />
+      <workItem from="1633256197850" duration="4940000" />
     </task>
     <task id="LOCAL-00001" summary="Interaction changes">
       <created>1631995927855</created>
@@ -460,7 +440,7 @@
       <breakpoints>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Source/LD49/Interaction/InteractionManager.cpp</url>
-          <line>34</line>
+          <line>33</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
