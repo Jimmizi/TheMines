@@ -38,7 +38,11 @@ public:
     void AddSupport();
     UFUNCTION(BlueprintCallable)
     void RemoveSupport();
+    
+    UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
+	void OnDug();
 private:
+    
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
     USceneComponent* SolidProp;
     
@@ -54,9 +58,11 @@ private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
     float DiggingTime{3.f};
     
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
+    float SupportedTime{2.f};
     
     uint32_t m_supported{0};
-    
+
     void Tick(float deltaTime) override;
     void BeginPlay() override;
     

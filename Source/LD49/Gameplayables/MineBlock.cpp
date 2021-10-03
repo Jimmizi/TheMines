@@ -36,10 +36,6 @@ namespace MineBlockInternal
             }
         }
     }
-    
-    //TODO: move them to a blueprintable configuration, but not in AMineBlock.
-    constexpr float DigTime{3.f};
-    constexpr float UnsupportTime{2.f};
 }
 
 AMineBlock::AMineBlock()
@@ -169,7 +165,7 @@ void AMineBlock::EndInteraction()
 
 AMineBlock::SolidState::SolidState(MineBlocker masterclass)
     : m_master(masterclass)
-    , m_timer(MineBlockInternal::DigTime)
+    , m_timer(masterclass.get().DiggingTime)
 {
     AMineBlock& master = masterclass;
     master.m_currentStatus = State::Solid;
@@ -197,6 +193,7 @@ void AMineBlock::SolidState::ProcessFSM(const float deltaTime, AMineBlock& maste
         {
             MineBlocker masterclass(master);
             master.m_fsm.Continue<UnsupportedState>(masterclass);
+            master.OnDug();
         }
     }
 }
@@ -204,7 +201,7 @@ void AMineBlock::SolidState::ProcessFSM(const float deltaTime, AMineBlock& maste
 void AMineBlock::SolidState::StartInteraction()
 {
     m_interacting = true;
-    m_timer = MineBlockInternal::DigTime;
+    m_timer = m_master.get().DiggingTime;
 }
 
 void AMineBlock::SolidState::EndInteraction()
@@ -222,7 +219,7 @@ void AMineBlock::SolidState::EndInteraction()
 // \\===========================//
 
 AMineBlock::UnsupportedState::UnsupportedState(MineBlocker masterclass)
-    : m_timer(MineBlockInternal::UnsupportTime)
+    : m_timer(masterclass.get().SupportedTime)
 {
     AMineBlock& master = masterclass;
     master.m_canBeInteracted = false;
@@ -237,7 +234,8 @@ void AMineBlock::UnsupportedState::ProcessFSM(const float deltaTime, AMineBlock&
 {
     if (master.m_supported > 0)
     {
-        m_timer = MineBlockInternal::UnsupportTime;
+        MineBlocker mastercard(master);
+        master.m_fsm.Continue<SupportedState>(mastercard);
     }
     else
     {
@@ -315,6 +313,7 @@ void AMineBlock::CollapsedState::ProcessFSM(const float deltaTime, AMineBlock& m
         {
             MineBlocker masterclass(master);
             master.m_fsm.Continue<UnsupportedState>(masterclass);
+            master.OnDug();
         }
     }
 }
@@ -322,7 +321,7 @@ void AMineBlock::CollapsedState::ProcessFSM(const float deltaTime, AMineBlock& m
 void AMineBlock::CollapsedState::StartInteraction()
 {
     m_interacting = true;
-    m_timer = MineBlockInternal::DigTime;
+    m_timer = m_master.get().DiggingTime;
 }
 
 void AMineBlock::CollapsedState::EndInteraction()
