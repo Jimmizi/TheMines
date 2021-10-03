@@ -93,7 +93,8 @@ protected:
 	InteractorType m_eInteractorType;
 
 protected:
-
+    bool m_canBeInteracted{true};
+    
 private:
 
 	bool m_bPerformingInteraction;

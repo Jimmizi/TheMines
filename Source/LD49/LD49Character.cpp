@@ -163,7 +163,10 @@ int ALD49Character::GetIndexOfBestInteractor() const
 				//call GetWorld() from within an actor extending class
 				if(GetWorld()->LineTraceSingleByChannel( hitResult, vPlayerPosition, pInteractorActor->GetInteractionPosition(), ECC_WorldStatic, traceParams))
 				{
-					continue;
+                    if (hitResult.Actor.Get() != pInteractorActor)
+                    {
+                        continue;
+                    }
 				}
 			}
 			
