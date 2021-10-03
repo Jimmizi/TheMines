@@ -16,7 +16,7 @@ void UPlayerOxygenComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (OxygenLevel > 0)
+	if (!bDeathTriggered)
 	{
 		OxygenLevel -= DeltaTime * OxygenDepleteRate;
 		if (OxygenLevel <= 0)
@@ -29,9 +29,13 @@ void UPlayerOxygenComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 
 void UPlayerOxygenComponent::TriggerDeath()
 {
+	bDeathTriggered = true;
 	if (auto* Character = Cast<ALD49Character>(GetOwner()))
-	{
-		Character->TriggerDeath(EDeathEffect::Suffocate);
+	{		
+		if (!Character->IsCharacterDead())
+		{
+			Character->TriggerDeath(EDeathEffect::Suffocate);
+		}
 	}
 }
 

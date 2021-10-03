@@ -83,6 +83,8 @@ public:
     void TriggerDeath(EDeathEffect deathEffect);
     virtual void TriggerDeath_Implementation(EDeathEffect deathEffect);
 
+	bool IsCharacterDead() const { return bIsCharacterDead; }
+
 protected:
 
 	/** called when something enters the sphere component */

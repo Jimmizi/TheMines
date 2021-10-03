@@ -26,6 +26,9 @@ private:
 	void TriggerDeath();
 
 protected:
+
+	bool bDeathTriggered = false;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float MaxOxygenLevel = 5000.0f;
 
