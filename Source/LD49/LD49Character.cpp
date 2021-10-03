@@ -142,6 +142,10 @@ int ALD49Character::GetIndexOfBestInteractor() const
 		const AInteractableActor* pInteractorActor = dynamic_cast<AInteractableActor*>(m_NearbyInteractors[i]);
 		if (pInteractorActor)
 		{
+            if (pInteractorActor->CanInteractWith() == false)
+            {
+                continue;
+            }
 			FVector normForward = GetActorForwardVector();
 			normForward.Normalize(0);
 
@@ -362,4 +366,33 @@ void ALD49Character::TriggerDeath_Implementation(EDeathEffect deathEffect)
 {
 	bIsCharacterDead = true;
 	OnCharacterDied.Broadcast();
+}
+
+bool ALD49Character::IsCarryingBeam() const
+{
+    return m_hasBeam;
+}
+
+bool ALD49Character::CarryBeam()
+{
+    if (m_hasBeam)
+    {
+        return false;
+    }
+    
+    m_hasBeam = true;
+    OnCarryBeamChanged(true);
+    return true;
+}
+
+bool ALD49Character::DropBeam()
+{
+    if (m_hasBeam == false)
+    {
+        return false;
+    }
+    
+    m_hasBeam = false;
+    OnCarryBeamChanged(false);
+    return true;
 }

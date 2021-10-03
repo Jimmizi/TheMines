@@ -56,3 +56,4 @@ void IInteractor::TerminateInteraction()
 {
     Execute_SetInteractionDone(m_pSelf);
 }
+

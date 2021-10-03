@@ -31,6 +31,9 @@ class ALD49Character : public ACharacter, public IInteractor
 {
 	GENERATED_BODY()
 
+public:
+	ALD49Character();
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Interactable", meta = (AllowPrivateAccess = "true"))
 	class USphereComponent* InteractableArea;
 	
@@ -76,27 +79,6 @@ class ALD49Character : public ACharacter, public IInteractor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	bool bIsCharacterDead = false;
 
-public:
-	ALD49Character();
-
-    UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-    void TriggerDeath(EDeathEffect deathEffect);
-    virtual void TriggerDeath_Implementation(EDeathEffect deathEffect);
-
-	bool IsCharacterDead() const { return bIsCharacterDead; }
-
-protected:
-
-	/** called when something enters the sphere component */
-	UFUNCTION()
-	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);	
-
-	/** called when something leaves the sphere component */
-	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);	
-	
-	virtual void BeginPlay();
-public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseTurnRate;
@@ -124,9 +106,27 @@ public:
 	/** Whether to use motion controller location for aiming. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint8 bUsingMotionControllers : 1;
+    
+    UFUNCTION(BlueprintCallable)
+    bool IsCarryingBeam() const;
+    
+    UFUNCTION(BlueprintCallable)
+    bool CarryBeam();
+    
+    UFUNCTION(BlueprintCallable)
+    bool DropBeam();
+    
+    UFUNCTION(BlueprintImplementableEvent)
+    void OnCarryBeamChanged(const bool value);
+    
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+    void TriggerDeath(EDeathEffect deathEffect);
+    virtual void TriggerDeath_Implementation(EDeathEffect deathEffect);
 
-private:
-	int GetIndexOfBestInteractor() const;
+	bool IsCharacterDead() const { return bIsCharacterDead; }
+    
+	/** Returns FirstPersonCameraComponent subobject **/
+	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
 protected:
 
@@ -169,7 +169,6 @@ protected:
 	void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
 	TouchData	TouchItem;
 	
-protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
@@ -181,15 +180,22 @@ protected:
 	 * @returns true if touch controls were enabled.
 	 */
 	bool EnableTouchscreenMovement(UInputComponent* InputComponent);
+    
+    /** called when something enters the sphere component */
+	UFUNCTION()
+	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);	
 
-public:
-	/** Returns Mesh1P subobject **/
+	/** called when something leaves the sphere component */
+	UFUNCTION()
+	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);	
 	
-	/** Returns FirstPersonCameraComponent subobject **/
-	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+	virtual void BeginPlay();
 
 private:
+	int GetIndexOfBestInteractor() const;
 
 	std::vector<IInteractor*> m_NearbyInteractors;
+    
+    bool m_hasBeam{false};
 };
 
