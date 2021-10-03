@@ -54,3 +54,8 @@ void InteractionInstance::End()
 		pInteractor->EndInteraction();
 	}
 }
+
+const std::vector<IInteractor*>& InteractionInstance::GetInteractors() const
+{
+    return m_Interactors;
+}

@@ -20,9 +20,9 @@ public:
 
 	void Initialise();
 	bool Update();
-	
-private:
 	void End();
+	
+    const std::vector<IInteractor*>& GetInteractors() const;
 
 private:
 	std::vector<IInteractor*> m_Interactors;
