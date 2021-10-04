@@ -396,3 +396,34 @@ bool ALD49Character::DropBeam()
     OnCarryBeamChanged(false);
     return true;
 }
+
+bool ALD49Character::CanSpawn(const FVector& location, const float boxSize)
+{
+    UWorld* world = GetWorld();
+    if (world == nullptr)
+    {
+        return false;
+    }
+    
+    TArray<FOverlapResult> results;
+    constexpr ECollisionChannel channelToQuery = ECollisionChannel::ECC_WorldDynamic;
+    const FVector halfSize{boxSize * 0.5f};
+    const FCollisionShape shapeToTest = FCollisionShape::MakeBox(halfSize);
+    const FCollisionQueryParams params{"CanSpawn", false, this};
+    
+    const bool hit = world->OverlapMultiByChannel(results, location, FQuat::Identity, channelToQuery, shapeToTest, params, FCollisionResponseParams::DefaultResponseParam);
+    // Todo, check, for every actor, if it's an interactable one, we bail
+    
+    for(const FOverlapResult& result : results)
+    {
+        AActor* hitActor = result.Actor.Get();
+        AInteractableActor* casted = Cast<AInteractableActor>(hitActor);
+        
+        if (casted)
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}
