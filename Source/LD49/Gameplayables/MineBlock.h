@@ -41,6 +41,9 @@ public:
     
     UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
 	void OnDug();
+    
+    UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
+    void OnCollapsed();
 private:
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interactable", meta = (AllowPrivateAccess = "true"))

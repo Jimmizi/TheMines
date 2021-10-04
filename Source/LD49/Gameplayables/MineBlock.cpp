@@ -294,6 +294,7 @@ AMineBlock::CollapsedState::CollapsedState(AMineBlock& master)
     MineBlockInternal::SetVisible(master.SupportedProp, false, MineBlockInternal::CollisionHandling::None);
     MineBlockInternal::SetVisible(master.UnsupportedProp, false, MineBlockInternal::CollisionHandling::None);
     MineBlockInternal::SetVisible(master.CollapsedProp, true, MineBlockInternal::CollisionHandling::Enable);
+    master.OnCollapsed();
 }
 
 AMineBlock::CollapsedState::~CollapsedState()
