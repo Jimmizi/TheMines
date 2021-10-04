@@ -8,7 +8,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="" />
+    <list default="true" id="dbd86f09-49d0-46e4-b578-613aa03fb3a2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Game/VFX/dust.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LD49/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SFX/DirtWalk1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/SFX/DirtWalk1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SFX/DirtWalk2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/SFX/DirtWalk2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SFX/DirtWalk3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/SFX/DirtWalk3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SFX/PickAx1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/SFX/PickAx1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SFX/PickAx2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/SFX/PickAx2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SFX/PickAx3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/SFX/PickAx3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SFX/PickAx4.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/SFX/PickAx4.uasset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -382,7 +392,7 @@
       <workItem from="1633189088813" duration="5646000" />
       <workItem from="1633198782298" duration="3468000" />
       <workItem from="1633256197850" duration="6277000" />
-      <workItem from="1633347340686" duration="11509000" />
+      <workItem from="1633347340686" duration="12771000" />
     </task>
     <task id="LOCAL-00001" summary="Interaction changes">
       <created>1631995927855</created>
@@ -441,7 +451,7 @@
       <breakpoints>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Source/LD49/Interaction/InteractionManager.cpp</url>
-          <line>33</line>
+          <line>32</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
