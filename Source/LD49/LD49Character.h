@@ -122,6 +122,9 @@ public:
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
     void TriggerDeath(EDeathEffect deathEffect);
     virtual void TriggerDeath_Implementation(EDeathEffect deathEffect);
+    
+    UFUNCTION(BlueprintCallable)
+    bool CanSpawn(const FVector& location, const float boxSize);
 
 	bool IsCharacterDead() const { return bIsCharacterDead; }
     
