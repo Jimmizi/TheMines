@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "InteractionManager.h"
+#include <set>
 
 #include "LD49/GameService.h"
 
@@ -36,34 +35,25 @@ bool AInteractionManager::CreateInteraction(std::initializer_list<IInteractor*> 
 
 void AInteractionManager::StopInteraction(std::initializer_list<InteractorElement> interactors)
 {
-    for (InteractionInstance& iter : m_currentInteractions)
+    std::set<IInteractor*> found;
+    for(IInteractor& other : interactors)
     {
-        bool match = iter.GetInteractors().empty() == false;
-        for(IInteractor* instance : iter.GetInteractors())
+        for (InteractionInstance& iter : m_currentInteractions)
         {
-            // The logic is inverted here on purpose.
-            // Believe it makes sense but I have no time to explain.
-            bool found = false;
-            for(IInteractor& other : interactors)
+            for(IInteractor* instance : iter.GetInteractors())
             {
-                if (&other == instance)
+                if (instance == &other)
                 {
-                    found = true;
+                    found.insert(instance);
                     break;
-                }
-            }
-            
-            if (found == false)
-            {
-                match = false;
-                break;
+                }                
             }
         }
-        
-        if (match)
-        {
-            iter.End();
-        }
+    }
+    
+    for(IInteractor* instance : found)
+    {
+        instance->EndInteraction();
     }
 }
 
