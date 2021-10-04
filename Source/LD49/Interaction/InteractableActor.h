@@ -53,7 +53,6 @@ public:
 
 	bool ShouldTickIfViewportsOnly() const override { return true; }
 	FVector GetInteractionPosition() const;
-	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
