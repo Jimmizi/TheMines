@@ -3,6 +3,10 @@
 # The Mines
 Made for Ludum Dare 49 (Theme: Unstable)
 
+https://superizzo.itch.io/the-mines
+
+https://ldjam.com/events/ludum-dare/49/the-mines
+
 Escape the mines before you run out of oxygen, but beware of the ghosts!
 
 WASD - Movement
