@@ -17,7 +17,7 @@ Tip: Use the lantern on the ghosts.
 
 Art: 
 
-[Thomas Coleman (@teciimedia)](tecii.artstation.com)
+[Thomas Coleman (@teciimedia)](https://tecii.artstation.com)
 
 Programming/Design: 
 
@@ -31,4 +31,5 @@ Programming/Design:
 Audio: 
 
 [Messmerd](https://soundcloud.com/messmerd) 
+
 [Jush](https://www.cephalo.io/)
